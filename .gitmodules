@@ -1,0 +1,3 @@
+[submodule "rollup-plugin-ts"]
+	path = rollup-plugin-ts
+	url = https://github.com/uwx/rollup-plugin-ts

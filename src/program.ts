@@ -78,6 +78,8 @@ export function getCompilerOptions(
       console.error(ts.formatDiagnostic(error, formatHost));
       return { dtsFiles, dirName, compilerOptions };
     }
+    config.compilerOptions.rootDir ??= dirName;
+    config.compilerOptions.baseUrl ??= dirName;
     logCache("tsconfig", config);
     const configContents = ts.parseJsonConfigFileContent(config, ts.sys, dirName);
     if (overrideConfigPath) {
@@ -93,6 +95,7 @@ export function getCompilerOptions(
   const { fileNames, options, errors } = configByPath.get(cacheKey)!;
 
   dtsFiles = fileNames.filter((name) => DTS_EXTENSIONS.test(name));
+  console.log(dtsFiles);
   if (errors.length) {
     console.error(ts.formatDiagnostics(errors, formatHost));
     return { dtsFiles, dirName, compilerOptions };
@@ -149,6 +152,8 @@ export function createPrograms(input: Array<string>, overrideOptions: ts.Compile
       ({ dirName, compilerOptions } = options);
     }
   }
+  console.log(...inputs, ...dtsFiles);
+
 
   if (inputs.length) {
     const host = ts.createCompilerHost(compilerOptions, true);

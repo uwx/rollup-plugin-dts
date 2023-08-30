@@ -1,5 +1,5 @@
 import * as path from "path";
-import type { Plugin } from "rollup";
+import type { AcornNode, Plugin } from "rollup";
 import ts from "typescript";
 import { NamespaceFixer } from "./NamespaceFixer.js";
 import { preProcess } from "./preprocess.js";
@@ -84,12 +84,13 @@ export const transform = () => {
       const converted = convert({ sourceFile });
 
       if (process.env.DTS_DUMP_AST) {
+      // if (true) {
         console.log(fileName);
         console.log(code);
         console.log(JSON.stringify(converted.ast.body, undefined, 2));
       }
 
-      return { code, ast: converted.ast as any, map: preprocessed.code.generateMap() as any };
+      return { code, ast: converted.ast as any as AcornNode, map: preprocessed.code.generateMap() as any };
     },
 
     renderChunk(inputCode, chunk, options) {

@@ -101,9 +101,12 @@ class Transformer {
     }
     if (ts.isImportDeclaration(node) || ts.isImportEqualsDeclaration(node)) {
       return this.convertImportDeclaration(node);
-    } else {
-      throw new UnsupportedSyntaxError(node);
     }
+    if (ts.isExpressionStatement(node)) {
+      return this.removeStatement(node);
+    }
+
+    throw new UnsupportedSyntaxError(node);
   }
 
   removeStatement(node: ts.Node) {

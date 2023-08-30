@@ -1,36 +1,44 @@
 {
-  "compilerOptions": {
-    "noEmitOnError": false,
-    "diagnostics": true,
-    "lib": ["esnext"],
+    "compilerOptions": {
+        "composite": true,
+        "noEmitOnError": false,
+        "diagnostics": true,
+        "lib": ["esnext"],
 
-    "target": "es2020",
+        "target": "es2020",
 
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "moduleResolution": "NodeNext",
-    "module": "NodeNext",
+        "esModuleInterop": true,
 
-    "jsx": "react",
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
+        "moduleResolution": "NodeNext",
+        "module": "NodeNext",
 
-    "skipLibCheck": true,
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noImplicitOverride": true,
-    "noUncheckedIndexedAccess": true,
-    "verbatimModuleSyntax": true,
+        "jsx": "react",
 
-    "incremental": true,
-    "tsBuildInfoFile": ".build/tsconfig.build.tsbuildinfo",
+        "skipLibCheck": true,
+        "strict": true,
+        // "noUnusedLocals": true,
+        // "noUnusedParameters": true,
+        // "noImplicitReturns": true,
+        // "noImplicitOverride": true,
+        // "noUncheckedIndexedAccess": true,
+        "verbatimModuleSyntax": true,
 
-    "declaration": true,
-    // "declarationMap": true,
-    "sourceMap": true,
+        "incremental": true,
+        "tsBuildInfoFile": ".build/tsconfig.build.tsbuildinfo",
 
-    "outDir": ".build"
-  },
-  "include": ["src", "tests", "rollup.config.ts"],
-  "exclude": ["tests/testcases", "tests/preprocess"]
+        "declaration": true,
+        // "declarationMap": true,
+        "sourceMap": true,
+
+        "outDir": ".build",
+    },
+    "include": ["src", "tests", "rollup.config.ts"],
+    "exclude": ["tests/testcases", "tests/preprocess", "node_modules", ".build"],
+    "references": [
+        {
+            "path": "./rollup-plugin-ts"
+        },
+    ]
 }

@@ -47,6 +47,6 @@ function frameNode(node: ts.Node) {
 
 export class UnsupportedSyntaxError extends Error {
   constructor(node: ts.Node, message: string = "Syntax not yet supported") {
-    super(`${message}\n${frameNode(node)}`);
+    super(`${message}: ${ts.SyntaxKind[node.kind]}\n${frameNode(node)}`);
   }
 }
